@@ -8,6 +8,7 @@ RUN apt-get update -yqq && \
     pecl channel-update pecl.php.net
 RUN apt-get install -y libpq-dev && \
     docker-php-ext-install pdo pdo_pgsql pgsql
+RUN docker-php-ext-install mysqli pdo_mysql
 
 WORKDIR /var/www
 EXPOSE 9000
