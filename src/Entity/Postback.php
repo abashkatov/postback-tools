@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\PostbackRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=PostbackRepository::class)
@@ -73,6 +74,12 @@ class Postback
      * @ORM\Column(type="datetime")
      */
     private \DateTime $conversionTime;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private \DateTime $createdAt;
 
     /**
      * @ORM\Column(type="json")
@@ -192,5 +199,14 @@ class Postback
     {
         $this->params = $params;
         return $this;
+    }
+
+    public function getCreatedAt(): \DateTime {
+      return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self {
+      $this->createdAt = $createdAt;
+      return $this;
     }
 }
